@@ -22,15 +22,14 @@ public final class StreamsProcessor {
     }
     public final void process() {
 
+        // Custom SerDe [Serializer + Deserializer]
         HealthCheckSerializer serializer = new HealthCheckSerializer();
         HealthCheckDeserializer deserializer = new HealthCheckDeserializer();
-
-
         Serde<HealthCheck> customSerde = Serdes.serdeFrom(serializer, deserializer);
 
+        // Stream DSL
         StreamsBuilder streamsBuilder = new StreamsBuilder();
         KStream<String, HealthCheck> initialStream = streamsBuilder.stream(Constants.getHealthChecksTopic(), Consumed.with(Serdes.String(), customSerde));
-
         initialStream.foreach((k, v) -> System.out.println(v.getIpAddress()));
 
         Topology topology = streamsBuilder.build();
