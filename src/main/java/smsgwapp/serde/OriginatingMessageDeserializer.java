@@ -1,21 +1,21 @@
 package smsgwapp.serde;
 
+import org.apache.kafka.common.serialization.Deserializer;
 import smsgwapp.Constants;
-import smsgwapp.HealthCheck;
+import smsgwapp.OriginatingMessage;
 
 import java.io.IOException;
 import java.util.Map;
-import org.apache.kafka.common.serialization.Deserializer;
 
 
-public final class HealthCheckDeserializer implements Deserializer<HealthCheck> {
+public final class OriginatingMessageDeserializer implements Deserializer<OriginatingMessage> {
     @Override
-    public HealthCheck deserialize(String topic, byte[] data) {
+    public OriginatingMessage deserialize(String topic, byte[] data) {
         if (data == null) {
             return null;
         }
         try {
-            return Constants.getJsonMapper().readValue(data, HealthCheck.class);
+            return Constants.getJsonMapper().readValue(data, OriginatingMessage.class);
         } catch (IOException e) {
             return null;
         }

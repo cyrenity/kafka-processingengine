@@ -1,15 +1,16 @@
 package smsgwapp.serde;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import smsgwapp.Constants;
-import java.util.Map;
 import org.apache.kafka.common.serialization.Serializer;
-import smsgwapp.HealthCheck;
+import smsgwapp.Constants;
+import smsgwapp.OriginatingMessage;
+
+import java.util.Map;
 
 
-public final class HealthCheckSerializer implements Serializer<HealthCheck> {
+public final class OriginatingMessageSerializer implements Serializer<OriginatingMessage> {
     @Override
-    public byte[] serialize(String topic, HealthCheck data) {
+    public byte[] serialize(String topic, OriginatingMessage data) {
         if (data == null) {
             return null;
         }

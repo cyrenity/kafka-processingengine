@@ -12,23 +12,14 @@ public final class Constants {
         mapper.setDateFormat(new StdDateFormat());
         jsonMapper = mapper;
     }
-    public static String getMoRequestsTopic() {
-        return "morequests";
-    }
-    public static String getMtRequestsTopic() {
-        return "mtrequests";
-    }
 
-
-    public static String getHealthChecksTopic() {
-        return "healthchecks";
+    public static String getOriginatingMessageTopic() {
+        return "mo_messages";
     }
 
     public static ObjectMapper getJsonMapper() {
         return jsonMapper;
     }
 
-    public enum machineType {GEOTHERMAL, HYDROELECTRIC, NUCLEAR, WIND, SOLAR}
-    public enum machineStatus {STARTING, RUNNING, SHUTTING_DOWN, SHUT_DOWN}
-
+    public enum esmes {MOBILINKECP, TELENORBISP, ZONGECP, UFONEREVERIFICATION}
 }
